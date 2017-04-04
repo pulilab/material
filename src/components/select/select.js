@@ -636,7 +636,6 @@ function SelectMenuDirective($parse, $mdUtil, $mdConstant, $mdTheming) {
 
   function SelectMenuController($scope, $attrs, $element) {
     var self = this;
-    console.log($attrs.separator);
     var separator = $attrs.separator || ', ';
     separator = separator === 'empty' ? ' ' : separator;
     self.isMultiple = angular.isDefined($attrs.multiple);
