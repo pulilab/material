@@ -636,7 +636,9 @@ function SelectMenuDirective($parse, $mdUtil, $mdConstant, $mdTheming) {
 
   function SelectMenuController($scope, $attrs, $element) {
     var self = this;
+    console.log($attrs.separator);
     var separator = $attrs.separator || ', ';
+    separator = separator === 'empty' ? ' ' : separator;
     self.isMultiple = angular.isDefined($attrs.multiple);
     // selected is an object with keys matching all of the selected options' hashed values
     self.selected = {};
