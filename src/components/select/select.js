@@ -68,6 +68,7 @@ angular.module('material.components.select', [
  *
  * @param {expression} ng-model The model!
  * @param {boolean=} multiple Whether it's multiple.
+ * @param {string=} md-select-separator the string to separate selected multiple values.
  * @param {expression=} md-on-close Expression to be evaluated when the select is closed.
  * @param {expression=} md-on-open Expression to be evaluated when opening the select.
  * Will hide the select options and show a spinner until the evaluated promise resolves.
@@ -247,12 +248,13 @@ function SelectDirective($mdSelect, $mdUtil, $mdConstant, $mdTheming, $mdAria, $
 
     // Use everything that's left inside element.contents() as the contents of the menu
     var multipleContent = isMultiple ? 'multiple' : '';
+    var separator = attr.mdSelectSeparator ? 'separator=' + attr.mdSelectSeparator: '';
     var selectTemplate = '' +
       '<div class="md-select-menu-container" aria-hidden="true">' +
-      '<md-select-menu {0}>{1}</md-select-menu>' +
+      '<md-select-menu {0} {2}>{1}</md-select-menu>' +
       '</div>';
 
-    selectTemplate = $mdUtil.supplant(selectTemplate, [multipleContent, element.html()]);
+    selectTemplate = $mdUtil.supplant(selectTemplate, [multipleContent, element.html(), separator]);
     element.empty().append(valueEl);
     element.append(selectTemplate);
 
@@ -634,6 +636,7 @@ function SelectMenuDirective($parse, $mdUtil, $mdConstant, $mdTheming) {
 
   function SelectMenuController($scope, $attrs, $element) {
     var self = this;
+    var separator = $attrs.separator || ', ';
     self.isMultiple = angular.isDefined($attrs.multiple);
     // selected is an object with keys matching all of the selected options' hashed values
     self.selected = {};
@@ -783,7 +786,7 @@ function SelectMenuDirective($parse, $mdUtil, $mdConstant, $mdTheming) {
         } else if (mode == 'aria') {
           mapFn = function(el) { return el.hasAttribute('aria-label') ? el.getAttribute('aria-label') : el.textContent; };
         }
-        return selectedOptionEls.map(mapFn).join(', ');
+        return selectedOptionEls.map(mapFn).join(separator);
       } else {
         return '';
       }
