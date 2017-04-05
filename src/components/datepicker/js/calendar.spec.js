@@ -26,6 +26,7 @@ describe('md-calendar', function() {
     if (activeViewController) {
       angular.element(activeViewController.calendarScroller).triggerHandler('scroll');
     }
+    $timeout.flush();
   }
 
   /** Extracts text as an array (one element per cell) from a tr element. */
