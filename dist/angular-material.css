@@ -1441,6 +1441,21 @@ md-checkbox {
   .md-chip-input-container md-autocomplete {
     border: none; } }
 
+md-content {
+  display: block;
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; }
+  md-content[md-scroll-y] {
+    overflow-y: auto;
+    overflow-x: hidden; }
+  md-content[md-scroll-x] {
+    overflow-x: auto;
+    overflow-y: hidden; }
+  @media print {
+    md-content {
+      overflow: visible !important; } }
+
 /** Styles for mdCalendar. */
 md-calendar {
   font-size: 13px;
@@ -1883,21 +1898,6 @@ md-dialog {
     min-height: 100%;
     min-width: 100%;
     border-radius: 0; } }
-
-md-content {
-  display: block;
-  position: relative;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch; }
-  md-content[md-scroll-y] {
-    overflow-y: auto;
-    overflow-x: hidden; }
-  md-content[md-scroll-x] {
-    overflow-x: auto;
-    overflow-y: hidden; }
-  @media print {
-    md-content {
-      overflow: visible !important; } }
 
 md-divider {
   display: block;
@@ -3212,6 +3212,58 @@ md-menu-content.md-menu-bar-menu.md-dense {
           right: auto;
           left: 28px; }
 
+.md-panel-outer-wrapper {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+._md-panel-hidden {
+  display: none; }
+
+._md-panel-fullscreen {
+  border-radius: 0;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  position: fixed;
+  top: 0; }
+
+._md-panel-shown .md-panel {
+  opacity: 1;
+  -webkit-transition: none;
+  transition: none; }
+
+.md-panel {
+  opacity: 0;
+  position: fixed; }
+  .md-panel._md-panel-shown {
+    opacity: 1;
+    -webkit-transition: none;
+    transition: none; }
+  .md-panel._md-panel-animate-enter {
+    opacity: 1;
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .md-panel._md-panel-animate-leave {
+    opacity: 1;
+    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 1, 1); }
+  .md-panel._md-panel-animate-scale-out, .md-panel._md-panel-animate-fade-out {
+    opacity: 0; }
+  .md-panel._md-panel-backdrop {
+    height: 100%;
+    position: absolute;
+    width: 100%; }
+  .md-panel._md-opaque-enter {
+    opacity: .48;
+    -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .md-panel._md-opaque-leave {
+    -webkit-transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1); }
+
 /** Matches "md-tabs md-tabs-wrapper" style. */
 .md-nav-bar {
   border-style: solid;
@@ -3264,58 +3316,6 @@ md-nav-ink-bar {
 md-nav-extra-content {
   min-height: 48px;
   padding-right: 12px; }
-
-.md-panel-outer-wrapper {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%; }
-
-._md-panel-hidden {
-  display: none; }
-
-._md-panel-fullscreen {
-  border-radius: 0;
-  left: 0;
-  min-height: 100%;
-  min-width: 100%;
-  position: fixed;
-  top: 0; }
-
-._md-panel-shown .md-panel {
-  opacity: 1;
-  -webkit-transition: none;
-  transition: none; }
-
-.md-panel {
-  opacity: 0;
-  position: fixed; }
-  .md-panel._md-panel-shown {
-    opacity: 1;
-    -webkit-transition: none;
-    transition: none; }
-  .md-panel._md-panel-animate-enter {
-    opacity: 1;
-    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
-    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1); }
-  .md-panel._md-panel-animate-leave {
-    opacity: 1;
-    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 1, 1); }
-  .md-panel._md-panel-animate-scale-out, .md-panel._md-panel-animate-fade-out {
-    opacity: 0; }
-  .md-panel._md-panel-backdrop {
-    height: 100%;
-    position: absolute;
-    width: 100%; }
-  .md-panel._md-opaque-enter {
-    opacity: .48;
-    -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
-    transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1); }
-  .md-panel._md-opaque-leave {
-    -webkit-transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1); }
 
 @-webkit-keyframes indeterminate-rotate {
   0% {

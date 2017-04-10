@@ -776,18 +776,18 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
 
       function scrollChunk() {
         var newPosition = calculateNewPosition();
-        
+
         element.scrollTop = newPosition;
-        
+
         if (scrollingDown ? newPosition < scrollEnd : newPosition > scrollEnd) {
           $$rAF(scrollChunk);
         }
       }
-      
+
       function calculateNewPosition() {
         var duration = 1000;
         var currentTime = $mdUtil.now() - startTime;
-        
+
         return ease(currentTime, scrollStart, scrollChange, duration);
       }
 
@@ -797,13 +797,29 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
         if (currentTime > duration) {
           return start + change;
         }
-        
+
         var ts = (currentTime /= duration) * currentTime;
         var tc = ts * currentTime;
 
         return start + change * (-2 * tc + 3 * ts);
       }
-    }
+    },
+      /**
+      * When used with the Array.filter() method; provides an easy mechanism for removing duplicates
+      * from an array.
+      *
+      *    var myArray = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];
+      *    myArray.filter($mdUtil.uniq) => [1, 2, 3, 4]
+      *
+      * @param value
+      * @param index
+      * @param self
+      *
+      * @returns {boolean}
+      */
+     uniq: function(value, index, self) {
+       return self.indexOf(value) === index;
+      }
   };
 
 
